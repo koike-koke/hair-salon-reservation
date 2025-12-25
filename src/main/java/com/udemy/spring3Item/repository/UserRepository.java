@@ -1,5 +1,20 @@
 package com.udemy.spring3Item.repository;
 
-public class UserRepository {
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.udemy.spring3Item.entity.UserEntity;
+
+
+
+@Repository
+public interface UserRepository 
+extends JpaRepository<UserEntity, Long>{
+	
+	Optional<UserEntity> findByLineUserId(String lineUserId);
+	
+	
 
 }
