@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.entity;
+package com.udemy.spring3Item.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
