@@ -20,6 +20,7 @@ public class UserService {
 		
 		
 		
+		
 	//ライン内部IDと名前
 	String lineUserId=principal.getAttribute("userId");
 	String name = principal.getAttribute("displayName");
