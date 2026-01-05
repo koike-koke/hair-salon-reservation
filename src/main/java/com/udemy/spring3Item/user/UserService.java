@@ -16,7 +16,8 @@ public class UserService {
 	private final UserRepository repo;
 	
 	@Transactional
-	public void updateUser(OAuth2User principal) {
+	public void updateUser(OAuth2User principal) {  
+		
 		
 	//ライン内部IDと名前
 	String lineUserId=principal.getAttribute("userId");
