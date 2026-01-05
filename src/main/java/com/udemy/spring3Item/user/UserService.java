@@ -38,5 +38,5 @@ public class UserService {
 		newUser.setRole("ROLE_USER");
 		repo.save(newUser);
 	}	
-	}
+	}    
 }
