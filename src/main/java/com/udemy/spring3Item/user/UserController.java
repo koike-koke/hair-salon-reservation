@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.User;
+package com.udemy.spring3Item.user;
 
 public class UserController {
 

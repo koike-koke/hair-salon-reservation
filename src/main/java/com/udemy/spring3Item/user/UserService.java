@@ -1,4 +1,6 @@
-package com.udemy.spring3Item.User;
+package com.udemy.spring3Item.user;
+
+import java.util.Optional;
 
 import jakarta.transaction.Transactional;
 
@@ -16,15 +18,25 @@ public class UserService {
 	@Transactional
 	public void updateUser(OAuth2User principal) {
 		
+	//ライン内部IDと名前
 	String lineUserId=principal.getAttribute("userId");
 	String name = principal.getAttribute("displayName");
 	
-	Optional<UserEntity>
+	Optional<UserEntity> userOpt 
+	=repo.findByLineUserId(lineUserId); 
 	
+	if (userOpt.isPresent()) {
+		UserEntity existingUser=userOpt.get();
+		if(!existingUser.getName().equals(name)) {
+			existingUser.setName(name);
+		}
 		
+	}else {
+		UserEntity newUser=new UserEntity();
+		newUser.setLineUserId(lineUserId);
+		newUser.setName(name);
+		newUser.setRole("ROLE_USER");
+		repo.save(newUser);
+	}	
 	}
-	
-	
-	
-
 }
