@@ -28,7 +28,7 @@ public class UserService {
 	if (userOpt.isPresent()) {
 		UserEntity existingUser=userOpt.get();
 		if(!existingUser.getName().equals(name)) {
-			existingUser.setName(name);
+			existingUser.setName(name);  
 		}
 		
 	}else {
