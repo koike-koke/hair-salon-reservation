@@ -31,6 +31,7 @@ public class UserService {
 			existingUser.setName(name);  
 		}
 		
+		
 	}else {
 		UserEntity newUser=new UserEntity();
 		newUser.setLineUserId(lineUserId);

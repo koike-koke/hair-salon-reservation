@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約登録</title>
+</head>
+<body>
+    <h1>新規予約</h1>
+    
+    <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+        
+        <div>
+            <label>電話番号：</label>
+            <input type="text" th:field="*{phoneNumber}" required>
+        </div>
+
+        <div>
+            <label>予約日：</label>
+            <input type="date" name="reservationDate" required>
+        </div>
+
+        <div>
+            <label>開始時間：</label>
+            <select name="startTime">
+                <option th:each="slot : ${timeSlots}" 
+                        th:value="${slot}" 
+                        th:text="${slot}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label>メニュー：</label>
+            <select th:field="*{menuTime}">
+                <option value="30">カット (30分)</option>
+                <option value="90">カラー＆カット (90分)</option>
+                <option value="120">パーマ (120分)</option>
+            </select>
+            <input type="hidden" th:field="*{menuName}" value="仮メニュー">
+        </div>
+
+        <button type="submit">予約する</button>
+    </form>
+</body>
+</html>

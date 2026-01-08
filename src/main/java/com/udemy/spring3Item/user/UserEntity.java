@@ -22,12 +22,13 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true)//ライン認証番号
 	private String lineUserId;
 	
-	@Column(nullable = false)
+	@Column(nullable = false)//ラインの名前
     private String name;
 	
+	@Column(nullable = false)//管理者権限
 	private String role;
 	
 
