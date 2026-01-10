@@ -1,8 +1,17 @@
 package com.udemy.spring3Item.reservation;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.udemy.spring3Item.user.UserEntity;
+import com.udemy.spring3Item.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,17 +20,35 @@ import lombok.RequiredArgsConstructor;
 public class ReservationController {
 	
 	private final ReservationService reservationService;
+	private final UserRepository repo;
 	
-	@GetMapping("/form")
+	@GetMapping("/form")//http://localhost:8083/form
 	public String form(Model model) {
 		model.addAttribute("timeSlots", reservationService.generateTimeSlots());
 	    model.addAttribute("reservation", new ReservationEntity());
 	    
 	     return "form";
 	}
-	//HTMLから返ってきたデータを保存するコントローラー書くところから
 	
+	//TODO userの部分１Lで固定中ログイン機能完成したら変更
+	@PostMapping("/reservations/save")
+    public String save
+   (@ModelAttribute ReservationEntity reservation,
+    @RequestParam("date") LocalDate date,
+    @RequestParam("time") LocalTime time
+    ) {
+		
+		UserEntity user = repo.findById(1L).orElseThrow();
 	
+	reservationService.saveReservation(reservation, date, time,user);
 	
-
+	return "redirect:/success";
+	
+	}
+	
+	@GetMapping("/success")
+	public String success(Model model) {
+		 return "success";
+	}
+	
 }

@@ -7,7 +7,7 @@
 <body>
     <h1>新規予約</h1>
     
-    <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+    <form th:action="@{/reservations/save}" th:object="${reservation}" method="post">
         
         <div>
             <label>電話番号：</label>
@@ -16,27 +16,26 @@
 
         <div>
             <label>予約日：</label>
-            <input type="date" name="reservationDate" required>
+            <input type="date" name="date" required>
         </div>
 
         <div>
             <label>開始時間：</label>
-            <select name="startTime">
+            <select name="time">
                 <option th:each="slot : ${timeSlots}" 
                         th:value="${slot}" 
                         th:text="${slot}"></option>
             </select>
         </div>
 
-        <div>
-            <label>メニュー：</label>
-            <select th:field="*{menuTime}">
-                <option value="30">カット (30分)</option>
-                <option value="90">カラー＆カット (90分)</option>
-                <option value="120">パーマ (120分)</option>
-            </select>
-            <input type="hidden" th:field="*{menuName}" value="仮メニュー">
-        </div>
+		<div>
+		    <label>メニュー：</label>
+		    <select th:field="*{menuName}">
+		        <option value="カット">カット (30分)</option>
+		        <option value="カラー＆カット">カラー＆カット (90分)</option>
+		        <option value="パーマ">パーマ (120分)</option>
+		    </select>
+		</div>
 
         <button type="submit">予約する</button>
     </form>
