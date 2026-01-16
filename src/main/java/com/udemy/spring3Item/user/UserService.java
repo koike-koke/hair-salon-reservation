@@ -18,7 +18,7 @@ public class UserService {
 	@Transactional
 	public void updateUser(OAuth2User principal) {  
 		
-	//ライン内部IDと名前
+	//ライン内部IDと名前 直すとこからデバックで
 	String lineUserId=principal.getAttribute("userId");
 	String name = principal.getAttribute("displayName");
 	
