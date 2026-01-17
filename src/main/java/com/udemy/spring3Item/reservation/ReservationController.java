@@ -32,7 +32,7 @@ public class ReservationController {
 	     return "form";
 	}
 	
-	//TODO userの部分１Lで固定中ログイン機能完成したら変更
+	//TODO
 	@PostMapping("/reservations/save")
     public String save
    (@ModelAttribute ReservationEntity reservation,

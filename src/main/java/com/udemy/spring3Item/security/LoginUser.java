@@ -1,7 +1,6 @@
 package com.udemy.spring3Item.security;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +15,10 @@ import lombok.Getter;
 @Getter
 public class LoginUser implements UserDetails,OAuth2User {
 
+	
     private final UserEntity user;
+    
+    private final java.util.Map<String, Object> attributes;
     
 
     @Override
@@ -51,9 +53,10 @@ public class LoginUser implements UserDetails,OAuth2User {
     
     @Override
     public java.util.Map<String, Object> getAttributes() {
-    	return Collections.emptyMap();
+        // 空のMapではなく、保持している情報を返す
+        return attributes; 
     }
-
+    
     @Override//管理者画面作りたい場合ここ変える
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return java.util.Collections.emptyList();
@@ -63,6 +66,8 @@ public class LoginUser implements UserDetails,OAuth2User {
     public String getName() {
         return user.getLineUserId();
     }
+    
+    
     
     
 }

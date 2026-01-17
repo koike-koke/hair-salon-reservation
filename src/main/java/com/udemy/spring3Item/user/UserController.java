@@ -14,10 +14,9 @@ public class UserController {
 	
 	private final UserService userService;
 	
-	@GetMapping("/")
+	@GetMapping("/")//localhost:8083/
 	public String index(@AuthenticationPrincipal OAuth2User principal, Model model) {
-		
-		userService.updateUser(principal);
+	
 		
 		model.addAttribute("userName", principal.getAttribute("displayName"));
 		return "index";
