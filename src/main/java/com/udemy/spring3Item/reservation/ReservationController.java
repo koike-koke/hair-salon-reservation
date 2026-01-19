@@ -32,7 +32,7 @@ public class ReservationController {
 	     return "form";
 	}
 	
-	//TODO
+
 	@PostMapping("/reservations/save")
     public String save
    (@ModelAttribute ReservationEntity reservation,

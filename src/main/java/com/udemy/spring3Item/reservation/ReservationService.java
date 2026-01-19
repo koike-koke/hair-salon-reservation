@@ -37,6 +37,11 @@ public class ReservationService {
          };
 		LocalDateTime endTime=startTime.plusMinutes(menuTime);
 		
+		boolean overlap = repo.overlap(startTime, endTime);
+	    if (overlap) {
+	        throw new ReservationException("ご希望の時間は、他の予約と重なっているため予約できません。");
+	    }
+	    
 		reservation.setUser(user);
 		reservation.setEndTime(endTime);
 		reservation.setMenuTime(menuTime);
@@ -63,6 +68,8 @@ public class ReservationService {
         }
 		return timeSlots;
 	}
+	
+	
 
 	
 }
