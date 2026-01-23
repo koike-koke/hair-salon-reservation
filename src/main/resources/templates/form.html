@@ -2,45 +2,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>予約登録</title>
+    <title>予約入力フォーム</title>
+    <style>
+        .error-message { color: red; font-weight: bold; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 140px; }
+    </style>
 </head>
 <body>
-	<div th:if="${errorMessage}" style="color: red; font-weight: bold; margin-bottom: 15px;">
-	    <p th:text="${errorMessage}"></p>
-	</div>
-    <h1>新規予約</h1>
-    
-    <form th:action="@{/reservations/save}" th:object="${reservation}" method="post">
+
+    <h1>美容院 予約フォーム</h1>
+
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form th:action="@{/reservations/save}" th:method="post" th:object="${reservation}">
         
-        <div>
+        <div class="form-group">
             <label>電話番号：</label>
-            <input type="text" th:field="*{phoneNumber}" required>
+            <input type="tel" th:field="*{phoneNumber}" placeholder="090-0000-0000" required>
         </div>
 
-        <div>
-            <label>予約日：</label>
-            <input type="date" name="date" required>
-        </div>
-
-        <div>
-            <label>開始時間：</label>
-            <select name="time">
-                <option th:each="slot : ${timeSlots}" 
-                        th:value="${slot}" 
-                        th:text="${slot}"></option>
+        <div class="form-group">
+            <label>メニュー：</label>
+            <select th:field="*{menuName}" required>
+                <option value="">選択してください</option>
+                <option th:each="m : ${menus}" 
+                        th:value="${m.name}" 
+                        th:text="${m.name + ' (' + m.time + '分)'}">
+                </option>
             </select>
         </div>
 
-		<div>
-		    <label>メニュー：</label>
-		    <select th:field="*{menuName}">
-		        <option value="カット">カット (30分)</option>
-		        <option value="カラー＆カット">カラー＆カット (90分)</option>
-		        <option value="パーマ">パーマ (120分)</option>
-		    </select>
+		<div class="form-group">
+		    <label>予約日：</label>
+		    <input type="date" name="date" 
+		           th:attr="min=${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}" 
+		           required>
 		</div>
+		
+        <div class="form-group">
+            <label>開始時間：</label>
+            <select name="time" required>
+                <option value="">時間を選択</option>
+                <option th:each="t : ${timeSlots}" 
+                        th:value="${t}" 
+                        th:text="${t}">
+                </option>
+            </select>
+        </div>
 
-        <button type="submit">予約する</button>
+        <div class="form-group">
+            <label>備考：</label>
+            <textarea th:field="*{memo}"></textarea>
+        </div>
+
+        <button type="submit">予約を確定する</button>
     </form>
+
 </body>
 </html>

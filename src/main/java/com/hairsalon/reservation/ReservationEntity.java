@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.reservation;
+package com.hairsalon.reservation;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.udemy.spring3Item.user.UserEntity;
+import com.hairsalon.user.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

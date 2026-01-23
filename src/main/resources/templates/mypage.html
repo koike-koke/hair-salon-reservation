@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>マイページ - 予約確認</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
+        .no-data { background: #fdf8e4; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .back-link { display: inline-block; margin-top: 20px; text-decoration: none; color: #007bff; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>マイページ</h1>
+    <p><strong th:text="${userName}"></strong> 様の予約状況</p>
+
+    <div th:if="${not #lists.isEmpty(reservations)}">
+        <table>
+            <thead>
+                <tr>
+                    <th>メニュー</th>
+                    <th>日付</th>
+                    <th>予約時間</th>
+                    <th>終了予定</th>
+                    <th>備考</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="res : ${reservations}">
+                    <td th:text="${res.menuName}" style="font-weight: bold;">カット</td>
+                    <td th:text="${#temporals.format(res.startTime, 'yyyy/MM/dd')}"></td>
+                    <td>
+                        <span th:text="${#temporals.format(res.startTime, 'HH:mm')}"></span>
+                        <span> 〜 </span>
+                    </td>
+                    <td th:text="${#temporals.format(res.endTime, 'HH:mm')}"></td>
+                    <td th:text="${res.memo}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(reservations)}" class="no-data">
+        <p>現在、ご予約はありません。</p>
+    </div>
+
+    <a th:href="@{/}" class="back-link">← ホームへ戻る</a>
+</div>
+
+</body>
+</html>

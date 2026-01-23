@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.user;
+package com.hairsalon.user;
 
 import java.util.Optional;
 

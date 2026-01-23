@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.reservation;
+package com.hairsalon.reservation;
 
 public class ReservationException extends RuntimeException {
 	public ReservationException(String message) {

@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.security;
+package com.hairsalon.security;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -6,9 +6,9 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.udemy.spring3Item.user.UserEntity;
-import com.udemy.spring3Item.user.UserRepository;
-import com.udemy.spring3Item.user.UserService;
+import com.hairsalon.user.UserEntity;
+import com.hairsalon.user.UserRepository;
+import com.hairsalon.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 

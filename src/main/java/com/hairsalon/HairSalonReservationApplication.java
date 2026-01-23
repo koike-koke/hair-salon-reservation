@@ -1,4 +1,4 @@
-package com.udemy.spring3Item;
+package com.hairsalon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

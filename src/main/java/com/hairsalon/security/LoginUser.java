@@ -1,4 +1,4 @@
-package com.udemy.spring3Item.security;
+package com.hairsalon.security;
 
 import java.util.Collection;
 
@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import com.udemy.spring3Item.user.UserEntity;
+import com.hairsalon.user.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
