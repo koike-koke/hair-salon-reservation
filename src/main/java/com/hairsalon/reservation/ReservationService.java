@@ -49,7 +49,8 @@ public class ReservationService {
 		if (startTime.isBefore(LocalDateTime.now())) {
 	        throw new ReservationException("過去の日時は予約できません。");
 		}
-		boolean overlap = repo.overlap(startTime, endTime);
+		boolean overlap = repo.existsByStartTimeBeforeAndEndTimeAfterAndActiveTrue
+				(endTime,startTime);
 	    if (overlap) {
 	        throw new ReservationException("ご希望の時間は、他の予約と重なっているため予約できません。");
 	    }
@@ -85,6 +86,17 @@ public class ReservationService {
 	@Transactional(readOnly = true)
 	public List<ReservationEntity> findMyReservations(Long userId) {
 		
-        return repo.findByUserIdOrderByStartTimeDesc(userId);
+        return repo.findByUserIdAndActiveTrueOrderByStartTimeDesc(userId);
     }
+	
+	@Transactional
+	public void cancelReservation(Long id) {
+		ReservationEntity reservation = repo.findById(id)
+				.orElseThrow(() -> new RuntimeException("予約が見つかりません"));
+		
+		reservation.setActive(false);
+		
+		repo.save(reservation);
+	}
+	
 }

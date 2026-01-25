@@ -60,7 +60,8 @@ public class ReservationEntity {
 	@Column(nullable = false)//予約終了時間
 	private LocalDateTime endTime;
 
-	
+	@Column(nullable = false)//予約有効か判定
+	private boolean active = true;
 	
 
 } 

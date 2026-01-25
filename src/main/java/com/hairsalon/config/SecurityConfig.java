@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecutityConfig { 
+public class SecurityConfig { 
 	
 	private final LoginUserLoader loginUserLoader;
 	@Bean
@@ -31,7 +31,13 @@ public class SecutityConfig {
 	            .userInfoEndpoint(userInfo -> userInfo
 	                    .userService(loginUserLoader)
 	                )
-	        );
+	        )
+	        .logout(logout -> logout
+	                .logoutUrl("/logout")            
+	                .logoutSuccessUrl("/") 
+	                .invalidateHttpSession(true)   
+	                .deleteCookies("JSESSIONID")     
+	            ); 
 	    
 	    return http.build();
 	}

@@ -21,6 +21,5 @@ public class UserController {
 		model.addAttribute("userName", principal.getAttribute("displayName"));
 		return "index";
 		
-		
 	}
 }
