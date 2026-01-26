@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface ReservationRepository 
 extends JpaRepository<ReservationEntity, Long>{
 	
-	boolean existsByStartTimeBeforeAndEndTimeAfterAndActiveTrue(LocalDateTime endTime, LocalDateTime startTime);
+	boolean existsByEndTimeAfterAndStartTimeBeforeAndActiveTrue( LocalDateTime startTime,LocalDateTime endTime);
 	
 	List<ReservationEntity> findByUserIdAndActiveTrueOrderByStartTimeDesc(Long userId);
 	

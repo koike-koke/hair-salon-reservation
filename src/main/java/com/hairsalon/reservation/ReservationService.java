@@ -49,8 +49,8 @@ public class ReservationService {
 		if (startTime.isBefore(LocalDateTime.now())) {
 	        throw new ReservationException("過去の日時は予約できません。");
 		}
-		boolean overlap = repo.existsByStartTimeBeforeAndEndTimeAfterAndActiveTrue
-				(endTime,startTime);
+		boolean overlap = repo.existsByEndTimeAfterAndStartTimeBeforeAndActiveTrue
+				(startTime,endTime);
 	    if (overlap) {
 	        throw new ReservationException("ご希望の時間は、他の予約と重なっているため予約できません。");
 	    }
