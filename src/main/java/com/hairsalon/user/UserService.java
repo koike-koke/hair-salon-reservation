@@ -29,8 +29,7 @@ public class UserService {
 		if(!Objects.equals(existingUser.getName(), name)) {
 			existingUser.setName(name);  
 		}
-		
-		
+				
 	}else {
 		
 		UserEntity newUser=new UserEntity();
