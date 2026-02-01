@@ -19,12 +19,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.hairsalon.user.UserEntity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "reservations")
 @Entity
-@Data
+@Getter 
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)

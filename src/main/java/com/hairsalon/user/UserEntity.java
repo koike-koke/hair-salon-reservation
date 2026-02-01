@@ -8,12 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "users")
 @Entity
-@Data
+@Getter 
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity {
@@ -25,10 +27,10 @@ public class UserEntity {
 	@Column(nullable = false, unique = true)//ライン認証番号
 	private String lineUserId;
 	
-	@Column(nullable = false)//ラインの名前
+	@Column(nullable = false)
     private String name;
 	
-	@Column(nullable = false)//管理者権限
+	@Column(nullable = false)
 	private String role;
 	
 
