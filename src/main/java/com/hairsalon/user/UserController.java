@@ -11,8 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-	
-	
+		
 	@GetMapping("/")//localhost:8083/
 	public String index(@AuthenticationPrincipal OAuth2User principal, Model model) {
 		
