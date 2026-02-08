@@ -16,7 +16,7 @@ public class UserService {
 	private final UserRepository repo;
 	
 	@Transactional
-	public void updateUser(OAuth2User principal) {  
+	public UserEntity updateUser(OAuth2User principal) {  
 		
 	String lineUserId=principal.getAttribute("userId");
 	String name = principal.getAttribute("displayName");
@@ -27,8 +27,9 @@ public class UserService {
 	if (userOpt.isPresent()) {
 		UserEntity existingUser=userOpt.get();
 		if(!Objects.equals(existingUser.getName(), name)) {
-			existingUser.setName(name);  
-		}
+			 existingUser.setName(name);  
+			 }
+		return  existingUser;
 				
 	}else {
 		
@@ -36,7 +37,8 @@ public class UserService {
 		newUser.setLineUserId(lineUserId);
 		newUser.setName(name);
 		newUser.setRole("ROLE_USER");
-		repo.save(newUser);
+		return repo.save(newUser);
 	}	
+	
 	}    
 }
